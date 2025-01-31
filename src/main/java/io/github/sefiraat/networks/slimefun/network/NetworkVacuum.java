@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network;
 
+import com.molean.folia.adapter.Folia;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import dev.sefiraat.sefilib.misc.ParticleUtils;
 import io.github.sefiraat.networks.NetworkStorage;
@@ -69,7 +70,7 @@ public class NetworkVacuum extends NetworkObject {
                         final BlockMenu blockMenu = data.getBlockMenu();
                         addToRegistry(block);
                         tryAddItem(blockMenu);
-                        Bukkit.getScheduler().runTask(Networks.getInstance(), bukkitTask -> findItem(blockMenu));
+                        Folia.getScheduler().runTask(Networks.getInstance(), blockMenu.getLocation(), () -> findItem(blockMenu));
                     }
                 }
 

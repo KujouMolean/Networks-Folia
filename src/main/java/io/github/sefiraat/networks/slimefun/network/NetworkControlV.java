@@ -1,6 +1,7 @@
 package io.github.sefiraat.networks.slimefun.network;
 
 import com.gmail.nossr50.mcMMO;
+import com.molean.folia.adapter.Folia;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import dev.sefiraat.sefilib.misc.ParticleUtils;
 import dev.sefiraat.sefilib.world.LocationUtils;
@@ -138,7 +139,7 @@ public class NetworkControlV extends NetworkDirectional {
         }
 
         this.blockCache.add(targetPosition);
-        Bukkit.getScheduler().runTask(Networks.getInstance(), bukkitTask -> {
+        Folia.getScheduler().runTask(Networks.getInstance(),targetBlock.getLocation(), () -> {
             targetBlock.setType(fetchedStack.getType(), true);
             if (SupportedPluginManager.getInstance().isMcMMO()) {
                 mcMMO.getPlaceStore().setTrue(targetBlock);

@@ -17,3 +17,4 @@ commands:
   networks:
     description: /networks
     usage: /networks <sub>
+folia-supported: true

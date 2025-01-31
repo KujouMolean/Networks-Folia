@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.tools;
 
+import com.molean.folia.adapter.SchedulerContext;
 import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
@@ -14,6 +15,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -106,15 +108,15 @@ public class NetworkRemote extends SlimefunItem {
             player.sendMessage(Theme.ERROR + "无法找到绑定的网格");
             return;
         }
-        
+
         StorageCacheUtils.executeAfterLoad(blockData, () -> {
             if (SlimefunItem.getById(blockData.getSfId()) instanceof NetworkGrid
-                && Slimefun.getProtectionManager().hasPermission(player, location, Interaction.INTERACT_BLOCK)) {
+                    && Slimefun.getProtectionManager().hasPermission(player, location, Interaction.INTERACT_BLOCK)) {
                 blockData.getBlockMenu().open(player);
             } else {
                 player.sendMessage(Theme.ERROR + "无法找到绑定的网格");
             }
-        }, false);
+        }, SchedulerContext.ofAsync());
     }
 
     public int getRange() {

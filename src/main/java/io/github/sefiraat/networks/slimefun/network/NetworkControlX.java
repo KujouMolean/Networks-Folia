@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network;
 
+import com.molean.folia.adapter.Folia;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import dev.sefiraat.sefilib.misc.ParticleUtils;
 import dev.sefiraat.sefilib.world.LocationUtils;
@@ -129,7 +130,7 @@ public class NetworkControlX extends NetworkDirectional {
         final UUID uuid = UUID.fromString(StorageCacheUtils.getData(blockMenu.getLocation(), OWNER_KEY));
         final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
 
-        Bukkit.getScheduler().runTask(Networks.getInstance(), bukkitTask -> {
+        Folia.getScheduler().runTask(Networks.getInstance(), targetBlock.getLocation(), () -> {
             if (!Slimefun.getProtectionManager().hasPermission(offlinePlayer, targetBlock, Interaction.BREAK_BLOCK)) {
                 return;
             }

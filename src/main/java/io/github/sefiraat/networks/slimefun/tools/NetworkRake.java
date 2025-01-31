@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.tools;
 
+import com.molean.folia.adapter.Folia;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.network.NetworkBridge;
@@ -91,7 +92,7 @@ public class NetworkRake extends LimitedUseItem {
                 && Slimefun.getProtectionManager().hasPermission(player, block, Interaction.BREAK_BLOCK)
             ) {
                 final BlockBreakEvent event = new BlockBreakEvent(block, player);
-                Networks.getPluginManager().callEvent(event);
+                Folia.getPluginManager().ce(event);
                 if (event.isCancelled()) {
                     return;
                 }

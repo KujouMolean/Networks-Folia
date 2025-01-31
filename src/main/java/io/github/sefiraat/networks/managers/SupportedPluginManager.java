@@ -1,8 +1,12 @@
 package io.github.sefiraat.networks.managers;
 
 import com.google.common.base.Preconditions;
+import com.molean.folia.adapter.Folia;
 import io.github.sefiraat.networks.Networks;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
 public class SupportedPluginManager {
 
@@ -24,10 +28,7 @@ public class SupportedPluginManager {
         this.infinityExpansion = Bukkit.getPluginManager().isPluginEnabled("InfinityExpansion");
         this.netheopoiesis = Bukkit.getPluginManager().isPluginEnabled("Netheopoiesis");
         this.slimeHud = Bukkit.getPluginManager().isPluginEnabled("SlimeHUD");
-        Networks.getInstance()
-            .getServer()
-            .getScheduler()
-            .runTaskLater(Networks.getInstance(), this::firstTickRegistrations, 1);
+        Folia.runAtFirstTick(Networks.getInstance(), this::firstTickRegistrations);
     }
 
     private void firstTickRegistrations() {
